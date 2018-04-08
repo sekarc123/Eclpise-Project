@@ -1,0 +1,43 @@
+package stepdefinition;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+
+public class Test 
+{
+	WebDriver driver;
+	
+	@Given("^open chrome browser and start application$")
+	public void open_chrome_browser_and_start_application() throws Throwable 
+	{
+	
+		System.setProperty("webdriver.chrome.driver","F:\\selenium228\\seleniumBrowserdrivers\\chromedriver.exe");
+		driver=new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("http://www.interviewhunt.com");
+		Thread.sleep(5000);
+		//driver.switchTo().frame(0);
+		//driver.findElement(By.xpath("//*[@id='adBlock']/table/tbody/tr[1]/td[1]/div/div/div/div/a")).click();
+		int size=driver.findElements(By.tagName("iframe")).size();
+	    System.out.println(size);
+	}
+
+	@When("^click on given links$")
+	public void click_on_given_links() throws Throwable
+	{
+	   
+	}
+
+	@Then("^validate the outcomes$")
+	public void validate_the_outcomes() throws Throwable 
+	{
+	   
+	}
+
+
+}

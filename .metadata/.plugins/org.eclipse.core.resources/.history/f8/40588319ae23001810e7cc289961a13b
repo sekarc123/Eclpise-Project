@@ -1,0 +1,21 @@
+package arithmetic;
+
+public class PrimeNumber {
+
+	public static void main(String[] args) {
+		int n=5;
+		int m;
+		m=n%2;
+		System.out.println(m);
+		
+		
+//		int i,m,f=0, count=10;
+//
+//		
+//		if(n==0||n==1){
+//			System.out.println("is not a prime number");
+//		}
+
+	}
+
+}

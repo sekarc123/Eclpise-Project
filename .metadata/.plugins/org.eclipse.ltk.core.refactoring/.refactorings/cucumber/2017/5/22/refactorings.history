@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;stepdefinition.Final&apos; to &apos;Answer&apos;&#x0D;&#x0A;- Original project: &apos;cucumber&apos;&#x0D;&#x0A;- Original element: &apos;stepdefinition.Final&apos;&#x0D;&#x0A;- Renamed element: &apos;stepdefinition.Answer&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;Final&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;stepdefinition{Final.java[Final" matchStrategy="1" name="Answer" qualified="false" references="true" similarDeclarations="false" stamp="1495931914673" textual="false" version="1.0"/>
+</session>

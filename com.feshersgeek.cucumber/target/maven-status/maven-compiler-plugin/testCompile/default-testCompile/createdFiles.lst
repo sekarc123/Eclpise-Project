@@ -1,0 +1,3 @@
+stepDefinition\SelectCourse.class
+stepDefinition\Signup.class
+testRunner\TestRunner.class

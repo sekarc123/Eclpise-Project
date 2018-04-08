@@ -1,0 +1,58 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "line": 4,
+        "name": "functional test on facebook",
+        "description": "",
+        "id": "test-on-facebook;functional-test-on-facebook",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 41078638742,
+              "status": "passed"
+            },
+            "line": 5,
+            "name": "open facebook",
+            "match": {
+              "location": "Abc.open_facebook()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 5549013748,
+              "status": "passed"
+            },
+            "line": 6,
+            "name": "Enter username and password",
+            "match": {
+              "location": "Abc.enter_username_and_password()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 90138928,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "validate the outcomes",
+            "match": {
+              "location": "Abc.validate_the_outcomes()"
+            },
+            "keyword": "Then "
+          }
+        ]
+      }
+    ],
+    "name": "Test on facebook",
+    "description": "I want to test this application",
+    "id": "test-on-facebook",
+    "keyword": "Feature",
+    "uri": "feature/Application.feature"
+  }
+]

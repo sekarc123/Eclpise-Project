@@ -1,0 +1,74 @@
+package appium;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Scanner;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+import io.appium.java_client.android.AndroidDriver;
+
+public class Myapplication 
+{
+public static void main(String[] args) throws MalformedURLException, InterruptedException 
+ {
+	Scanner sc=new Scanner(System.in);	
+	System.out.println("Enter computer/avd /ard");
+	String x=sc.nextLine();
+	WebDriver driver = null;
+	if(x.equals("computer"))
+	{
+		System.setProperty("webdriver.chrome.driver", "G:\\VOLUME F\\selenium228\\seleniumBrowserdrivers\\chromedriver.exe");
+		driver=new ChromeDriver();
+	}
+	else if(x.equals("avd"))
+	{
+		DesiredCapabilities c=new DesiredCapabilities();
+		c.setCapability(CapabilityType.BROWSER_NAME, "Browser");
+		c.setCapability("deviceName", "emulator-5554");
+		c.setCapability("platformName","Android");
+		c.setCapability("PlatformVersion","6.0");
+		URL u=new URL ("http://127.0.0.1:4723/wd/hub");
+		driver=new AndroidDriver(u,c);
+	}
+	else if(x.equals("ard"))
+	{
+		DesiredCapabilities c=new DesiredCapabilities();
+		//c.setCapability("no-reset", "true");
+		//c.setCapability("full-reset", "False");
+		c.setCapability(CapabilityType.BROWSER_NAME, "Chrome");
+		c.setCapability("deviceName", "dcbea60b7d43");
+		c.setCapability("platformName","Android");
+		c.setCapability("PlatformVersion","6.0.1");
+		URL u=new URL ("http://127.0.0.1:4727/wd/hub");
+		driver=new AndroidDriver(u,c);
+	}
+	else
+	{
+		System.out.println("wrong data");
+		System.exit(0);
+	}
+	//launch site
+	driver.get("http://gmail.com");
+	Thread.sleep(15000);
+	//login
+	driver.findElement(By.name("identifier")).sendKeys("sekarcreddy@gmail.com");
+	driver.findElement(By.xpath("//*[text()='Next']")).click();
+	Thread.sleep(15000);
+	driver.findElement(By.name("password")).sendKeys("sekar18.");
+	driver.findElement(By.xpath("//*[text()='Next']")).click();
+	Thread.sleep(15000);
+	//logout
+	driver.findElement(By.xpath("//*[starts-with(@title,'Google Account')]/child::span")).click();
+	Thread.sleep(5000);
+	driver.findElement(By.xpath("//*[text()='Sign out']")).click();
+	Thread.sleep(5000);
+	//close site
+	driver.close();	
+ }
+
+}

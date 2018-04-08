@@ -1,0 +1,197 @@
+package stepdefinition;
+
+
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
+import java.io.File;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+import cucumber.api.java.en.And;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+import jxl.Sheet;
+import jxl.Workbook;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
+
+public class Askquestion 
+{
+	WebDriver driver;
+
+@Given("^After login ask a quetion$")
+public void after_login_ask_a_quetion() throws Throwable 
+{
+	System.setProperty("webdriver.chrome.driver", "F:\\selenium228\\seleniumBrowserdrivers\\chromedriver.exe"); 
+    driver=new ChromeDriver(); 
+	driver.manage().window().maximize();
+    driver.get("http://stage.interviewhut.com/");
+    Thread.sleep(5000);
+    driver.findElement(By.linkText("Login or Register")).click();
+    Thread.sleep(5000);
+    driver.findElement(By.id("username")).sendKeys("sekarreddy");
+    driver.findElement(By.id("password")).sendKeys("112411106075");
+	driver.findElement(By.name("submit")).click();
+	Thread.sleep(5000);
+	 //ANSWER A QUESTION
+    driver.findElement(By.xpath("//*[text()='What is router?']")).click();
+    Thread.sleep(5000);
+    driver.switchTo().frame("post_content_ifr");
+    driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+    driver.findElement(By.id("tinymce")).click();
+    Thread.sleep(5000);
+    
+    File f=new File("F:\\answer.xls");
+    Workbook w=Workbook.getWorkbook(f);
+    Sheet s=w.getSheet(0);
+    int nor=s.getRows();
+    int noc=s.getColumns();
+    
+    WritableWorkbook wb=Workbook.createWorkbook(f,w);
+    WritableSheet ws=wb.getSheet(0);
+    Thread.sleep(5000);
+    for(int i=0; i<nor; i++)
+    {
+        String a=s.getCell(0, i).getContents();
+        Thread.sleep(5000);
+        driver.findElement(By.xpath("(//*[@id='submit_reply'])[2]")).click();	
+    }
+    wb.write();
+    wb.close();
+    w.close();
+    
+	/*//selecting a question with answer
+    driver.findElement(By.xpath("(//*[text()='How to become a billionaire in the next 5 years?'])[9]")).click();
+    Thread.sleep(5000);
+    //vote up to a question
+    driver.findElement(By.xpath("//*[@id='question_content']/descendant::a[1]")).click();
+    Thread.sleep(5000);
+    //comment for the question
+    driver.findElement(By.xpath("(//*[@class='show-comments'])[1]")).click();
+    Thread.sleep(5000);
+    driver.switchTo().frame("insert_answer_78_ifr");
+    driver.findElement(By.id("tinymce")).sendKeys("nice");
+    Thread.sleep(5000);
+    driver.switchTo().defaultContent();
+    driver.findElement(By.xpath("(//*[@id='submit_reply'])[1]")).click();
+    Thread.sleep(5000);*/
+    
+    
+    //logout
+    
+    driver.findElement(By.xpath("//*[@class='display_name']")).click();
+	driver.findElement(By.xpath("//*[@id='header_sidebar']/preceding::*[2]")).click();
+    Thread.sleep(5000);
+   
+}
+	
+/*	//updating profile picture
+	   driver.findElement(By.xpath("//*[@class='display_name']")).click();
+	   Thread.sleep(5000);
+	   driver.findElement(By.xpath("//*[@class='open-edit-profile edit_profile']")).click();
+	   Thread.sleep(5000);
+	   driver.findElement(By.id("user_avatar_browse_button")).click();
+	   Thread.sleep(5000);
+	   //upload image use javaRobot
+	   Robot r=new Robot();
+	   StringSelection s=new StringSelection("F:\\cartoon-man-working-computer.jpg");
+	   Toolkit.getDefaultToolkit().getSystemClipboard().setContents(s, null);
+	   r.keyPress(KeyEvent.VK_CONTROL);
+	   r.keyPress(KeyEvent.VK_V);
+	   r.keyRelease(KeyEvent.VK_V);
+	   r.keyRelease(KeyEvent.VK_CONTROL);
+	   Thread.sleep(5000);
+	   r.keyPress(KeyEvent.VK_ENTER);
+	   r.keyRelease(KeyEvent.VK_ENTER);
+	   Thread.sleep(10000);
+       driver.findElement(By.name("submit")).click();
+	
+	
+}
+
+@When("^check answer for the question$")
+public void check_answer_for_the_question() throws Throwable 
+{
+	driver.findElement(By.xpath("(//*[@class='action ask-question'])[2]")).click();
+	//get data from excel 
+	File f=new File("F:\\Interviewhutlogindata.xls");
+	Workbook w=Workbook.getWorkbook(f);
+	Sheet s=w.getSheet(0);
+	int nor=s.getRows();
+	int noc=s.getColumns();
+	WritableWorkbook wb=Workbook.createWorkbook(f,w);
+	WritableSheet ws=wb.getSheet(0);
+	for(int i=0; i<nor; i++)
+	{
+		
+		String qus=s.getCell(0,i).getContents();
+	//getting data from excel for question
+	driver.findElement(By.id("question_title")).sendKeys(qus);
+	Thread.sleep(5000);
+	WebElement e=driver.findElement(By.xpath("(//*[@class='select-categories']/descendant::span[1])[3]"));
+	Actions a=new Actions(driver);
+	a.click(e).build().perform();
+	Thread.sleep(5000);
+	a.sendKeys("Education").build().perform();
+	Thread.sleep(5000);
+	a.sendKeys(Keys.ENTER).build().perform();
+	Thread.sleep(5000);
+	driver.switchTo().frame("insert_question_ifr");
+	//getting data from excel for comment
+	String des=s.getCell(1,i).getContents();
+	driver.findElement(By.id("tinymce")).sendKeys(des);
+	Thread.sleep(5000);
+	driver.switchTo().defaultContent();
+	String tag=s.getCell(2,i).getContents();
+	driver.findElement(By.id("question_tags")).sendKeys(tag);
+	Thread.sleep(5000);
+	JavascriptExecutor js= (JavascriptExecutor) driver;
+	js.executeScript("alert('manually select captcha');");
+	Thread.sleep(90000);
+	//-------code for captcha-------
+	driver.findElement(By.id("btn_submit_question")).click();
+	Thread.sleep(5000);
+	wb.write();
+	wb.close();
+	w.close();
+	
+	
+	}
+}
+
+@And("^select like for the answer$")
+public void select_like_for_the_answer() throws Throwable 
+{
+	
+	
+	
+   
+}
+
+@Then("^logout$")
+public void logout() throws Throwable 
+{
+	WebElement e=driver.findElement(By.xpath("//*[text()='Sekar Automation']"));
+    Actions a=new Actions(driver);
+	a.click(e).build().perform();
+	Thread.sleep(5000);
+	a.sendKeys("Logout").build().perform();
+	Thread.sleep(5000);
+	a.sendKeys(Keys.ENTER).build().perform();
+	Thread.sleep(5000);
+	
+    
+}*/
+
+
+}

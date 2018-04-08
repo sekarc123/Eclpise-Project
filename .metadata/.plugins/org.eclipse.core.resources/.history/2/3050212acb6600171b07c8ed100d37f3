@@ -1,0 +1,116 @@
+package stepdefinition;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+
+public class Cheking 
+{
+	
+	WebDriver driver; 
+	
+	//search
+	@Given("^OPen browser and login$")
+	public void open_browser_and_login() throws Throwable 
+	{
+		System.setProperty("webdriver.chrome.driver", "G:\\VOLUME F\\selenium228\\seleniumBrowserdrivers\\chromedriver.exe");
+		driver=new ChromeDriver();
+		driver.manage().window().maximize();
+		Thread.sleep(5000);
+		driver.get("http://stage.interviewhut.com/");
+		Thread.sleep(10000);
+       	driver.findElement(By.id("open")).click();
+	    //driver.findElement(By.linkText("Login or Register")).click();
+	    Thread.sleep(5000);
+	    driver.findElement(By.id("log")).sendKeys("sekarreddy");
+	    driver.findElement(By.id("pwd")).sendKeys("112411106075");
+		driver.findElement(By.xpath("//*[@class='bt_login']")).click();
+		Thread.sleep(5000);
+		
+	}
+
+	@When("^search with text and check listed corectly$")
+	public void search_with_text_and_check_listed_corectly() throws Throwable 
+	{
+		WebElement e=driver.findElement(By.name("keyword"));
+		Actions a=new Actions(driver);
+		a.moveToElement(e).sendKeys("which is best mobile below RS.10000",Keys.ENTER).perform();
+		Thread.sleep(5000);
+		
+	   
+	}
+
+	@Then("^logout and exit browser$")
+	public void logout_and_exit_browser() throws Throwable 
+	{
+	    System.out.println("pass");
+	}
+	//Category
+
+	@Given("^LOGIN$")
+	public void login() throws Throwable 
+	{
+	   
+	}
+
+	@When("^ort by category and check listed corectly$")
+	public void ort_by_category_and_check_listed_corectly() throws Throwable 
+	{
+	    
+	}
+
+	@Then("^sign out and Exit browser$")
+	public void sign_out_and_Exit_browser() throws Throwable 
+	{
+		   System.out.println("pass");
+	}
+	
+	//Trending
+	@Given("^login in interviewhut$")
+	public void login_in_interviewhut() throws Throwable 
+	{
+	  
+	}
+
+	@When("^check answer in Trending$")
+	public void check_answer_in_Trending() throws Throwable 
+	{
+	   
+	}
+
+	@Then("^logout interviewhut$")
+	public void logout_interviewhut() throws Throwable 
+	{
+	   
+	}
+	
+	//Counts
+
+	@Given("^Login in interviewhutsite$")
+	public void login_in_interviewhutsite() throws Throwable 
+	{
+	    
+	}
+
+	@When("^Check Answer,view,and vote count$")
+	public void check_Answer_view_and_vote_count() throws Throwable 
+	{
+	   
+	}
+
+	@Then("^Logout interviewhutsite$")
+	public void logout_interviewhutsite() throws Throwable 
+	{
+	   
+	}
+
+
+
+}

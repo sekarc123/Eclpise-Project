@@ -1,0 +1,136 @@
+package stepdefinitionAppium;
+
+import java.net.URL;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import cucumber.api.java.en.And;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+import io.appium.java_client.android.AndroidDriver;
+
+public class freshergeek 
+{
+	  WebDriver driver;
+	
+	 //signup
+	  
+	@Given("^open browser and enter url$")
+	public void open_browser_and_enter_url() throws Throwable 
+	{
+		   DesiredCapabilities c=new DesiredCapabilities();
+		   c.setCapability("deviceName","Redmi");
+		   c.setCapability(CapabilityType.BROWSER_NAME, "Chrome");
+		   c.setCapability("platformName","Android");
+		   c.setCapability("platformVersion", "6.0.1");
+		   URL u=new URL("http://127.0.0.1:4725/wd/hub");
+		   driver=new AndroidDriver(u,c);
+		   Thread.sleep(5000); 
+		   driver.get("http://stage-academy.freshersgeek.com/");
+		   Thread.sleep(10000);
+			   
+		
+	}
+
+	@When("^click on signup$")
+	public void click_on_signup() throws Throwable 
+	{
+		driver.findElement(By.xpath("//*[text()='LOGIN']")).click();
+	       Thread.sleep(5000);
+	   	   driver.findElement(By.xpath("//*[text()='Sign Up']")).click();
+	   	   Thread.sleep(5000);	  
+	       driver.findElement(By.name("signup_username")).sendKeys("sekarRaja");
+		   driver.findElement(By.name("signup_email")).sendKeys("sekarcreddy@gmail.com");
+		   driver.findElement(By.name("signup_password")).sendKeys("password");
+		   driver.findElement(By.name("signup_password_confirm")).sendKeys("password");
+		   Thread.sleep(5000);
+		   driver.findElement(By.name("field_1")).sendKeys("sekarRaja",Keys.TAB,Keys.TAB,Keys.TAB,Keys.TAB,"hi");
+		   driver.findElement(By.name("field_7")).sendKeys("location");
+		   driver.findElement(By.name("signup_submit")).click();
+		   Thread.sleep(5000); 
+	}
+
+	@Then("^logout$")
+	public void logout() throws Throwable 
+	{
+		driver.findElement(By.xpath("(//*[text()='Sekar Automation'])[1]")).click();
+		Thread.sleep(5000);
+		driver.findElement(By.xpath("//*[@class='logout']")).click();
+		Thread.sleep(5000);
+		driver.close();
+	    Thread.sleep(5000);
+	}
+	
+	// @select
+	@Given("^open browser enter url and login$")
+	public void open_browser_enter_url_and_login() throws Throwable 
+	{
+		 DesiredCapabilities c=new DesiredCapabilities();
+		   c.setCapability("deviceName","Redmi");
+		   c.setCapability(CapabilityType.BROWSER_NAME, "Chrome");
+		   c.setCapability("platformName","Android");
+		   c.setCapability("platformVersion", "6.0.1");
+		   URL u=new URL("http://127.0.0.1:4725/wd/hub");
+		   driver=new AndroidDriver(u,c);
+		   Thread.sleep(5000); 
+		   driver.get("http://stage-academy.freshersgeek.com/");
+		
+		WebDriverWait w=new WebDriverWait(driver,10);
+		w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='LOGIN']")));  
+	    Thread.sleep(5000);
+	    driver.findElement(By.xpath("//*[text()='LOGIN']")).click();
+	    Thread.sleep(5000);
+	    driver.findElement(By.name("log")).sendKeys("sekarc123@gmail.com");
+	    driver.findElement(By.name("pwd")).sendKeys("8754740912",Keys.ENTER);
+	    //driver.hideKeyboard();
+	    //Thread.sleep(5000);
+	   // driver.findElement(By.name("user-submit")).click();
+	    Thread.sleep(5000);
+	}
+
+	@When("^click on technology$")
+	public void click_on_technology() throws Throwable 
+	{
+		driver.findElement(By.xpath("//*[text()='Technology']")).click();
+		Thread.sleep(5000);
+	   
+	}
+
+	@And("^get list of technology$")
+	public void get_list_of_technology() throws Throwable 
+	{
+		
+		String x=driver.findElement(By.xpath("(//*[text()='Software Training'])[1]")).getAttribute("title");
+		System.out.println(x);
+		Thread.sleep(5000);
+		String x1=driver.findElement(By.xpath("(//*[text()='Developing Mobile Apps'])[1]")).getAttribute("title");
+		System.out.println(x1);
+		String x2=driver.findElement(By.xpath("(//*[text()='How to develop Mac Apps'])[1]")).getAttribute("title");
+		System.out.println(x2);
+	    
+	}
+
+	@Then("^select a course from list and logout$")
+	public void select_a_course_from_list_and_logout() throws Throwable 
+	{
+		driver.findElement(By.xpath("//*[text()='Software Training']")).click();
+		Thread.sleep(5000);
+		driver.findElement(By.xpath("//*[text()='TAKE THIS COURSE']")).click();
+		Thread.sleep(5000);
+		driver.findElement(By.xpath("(//*[text()='Sekar Automation'])[1]")).click();
+		Thread.sleep(5000);
+		driver.findElement(By.xpath("//*[@class='logout']")).click();
+		Thread.sleep(5000);
+		driver.close();
+	}
+
+
+}

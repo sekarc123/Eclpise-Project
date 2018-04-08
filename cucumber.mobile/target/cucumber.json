@@ -1,0 +1,64 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "line": 4,
+        "name": "functional testing",
+        "description": "",
+        "id": "web-application-testing;functional-testing",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 3894600077,
+              "status": "passed"
+            },
+            "line": 5,
+            "name": "open chrome browser",
+            "match": {
+              "location": "Example.open_chrome_browser()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 8022426222,
+              "status": "passed"
+            },
+            "line": 6,
+            "name": "open gmail.com",
+            "match": {
+              "location": "Example.open_gmail_com()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 1277566533,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "exit",
+            "match": {
+              "location": "Example.exit()"
+            },
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "line": 3,
+            "name": "@practice"
+          }
+        ]
+      }
+    ],
+    "name": "web application testing",
+    "description": "",
+    "id": "web-application-testing",
+    "keyword": "Feature",
+    "uri": "practice.feature"
+  }
+]

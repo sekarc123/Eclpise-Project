@@ -1,0 +1,64 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "line": 5,
+        "name": "signup scenario testing",
+        "description": "",
+        "id": "stage-academy.freshersgeek.com-test;signup-scenario-testing",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 68031283188,
+              "status": "passed"
+            },
+            "line": 6,
+            "name": "open browser and enter url",
+            "match": {
+              "location": "freshergeek.open_browser_and_enter_url()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 49954318034,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "click on signup",
+            "match": {
+              "location": "freshergeek.click_on_signup()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 5000367682,
+              "status": "passed"
+            },
+            "line": 8,
+            "name": "logout",
+            "match": {
+              "location": "freshergeek.logout()"
+            },
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "line": 4,
+            "name": "@signup"
+          }
+        ]
+      }
+    ],
+    "name": "stage-academy.freshersgeek.com Test",
+    "description": "functional and non functional test",
+    "id": "stage-academy.freshersgeek.com-test",
+    "keyword": "Feature",
+    "uri": "geek.feature"
+  }
+]

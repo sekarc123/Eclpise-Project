@@ -1,0 +1,26 @@
+package arithmetic;
+
+public class Practice {
+	
+	int rollno;
+	String name;
+	float fees;
+	
+	Practice(int rollno, String name, float fees){
+		this.rollno= rollno;
+		this.name= name;
+		this.fees= fees;
+	}
+	void display(){
+		System.out.println(rollno+ " " +name+ " "+fees);
+	}
+	
+	public static void main(String[] args){
+		Practice p1= new Practice(01, "sekar", 1000);
+		Practice p2= new Practice(02,"murali", 2000);
+		p1.display();
+		p2.display();
+		
+	}
+
+}

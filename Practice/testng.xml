@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+  
+<suite name="xmldemo" verbose="1" >
+  <test name="demo" >
+    <classes>
+       <class name="com.wordpress.page.Annatation" />
+        <class name="com.wordpress.page.Annatation2" />
+    </classes>
+  </test>
+</suite>

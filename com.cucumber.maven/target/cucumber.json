@@ -1,0 +1,64 @@
+[
+  {
+    "line": 2,
+    "elements": [
+      {
+        "line": 30,
+        "name": "Tag question",
+        "description": "",
+        "id": "interviewhut-site-test;tag-question",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 347278154516,
+              "status": "passed"
+            },
+            "line": 31,
+            "name": "LOGIN INTERVIEWHUT",
+            "match": {
+              "location": "Cheking.login_INTERVIEWHUT()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 13198643502,
+              "status": "passed"
+            },
+            "line": 32,
+            "name": "List a question based on tag",
+            "match": {
+              "location": "Cheking.list_a_question_based_on_tag()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 23872694593,
+              "status": "passed"
+            },
+            "line": 33,
+            "name": "SIGNOUT",
+            "match": {
+              "location": "Cheking.signout()"
+            },
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "line": 29,
+            "name": "@Tagquestion"
+          }
+        ]
+      }
+    ],
+    "name": "Interviewhut site test",
+    "description": "functional and non functional test",
+    "id": "interviewhut-site-test",
+    "keyword": "Feature",
+    "uri": "Cheking.feature"
+  }
+]

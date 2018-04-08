@@ -1,0 +1,93 @@
+package stepdefinition;
+
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import cucumber.api.java.en.And;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+
+public class InterviewhuntLogin 
+{
+	WebDriver driver; 
+	
+	
+	@And("^Open chrome browseer and enter url stage\\.interviewhunt\\.com$")
+	public void open_chrome_browseer_and_enter_url_stage_interviewhunt_com() throws Throwable 
+	{
+	   System.setProperty("webdriver.chrome.driver", "F:\\selenium228\\seleniumBrowserdrivers\\chromedriver.exe"); 
+	   driver=new ChromeDriver();
+	   driver.manage().window().maximize();
+	   driver.get("http://www.stage.interviewhunnt.com");
+	   Thread.sleep(5000);
+	   
+	}
+
+	@Given("^Click for register to signup for new user$")
+	public void click_for_register_to_signup_for_new_user() throws Throwable 
+	{
+		driver.findElement(By.linkText("Login or Register")).click();
+		driver.findElement(By.linkText("Sign up here")).click();
+		driver.findElement(By.id("username")).sendKeys("sekarreddy"); 
+		driver.findElement(By.id("email")).sendKeys("sekarcreddy@gmail.com");
+		driver.findElement(By.id("password1")).sendKeys("112411106075");
+		driver.findElement(By.id("re_password")).sendKeys("112411106075");
+		//code for captcha
+		driver.findElement(By.name("submit")).click();
+		
+		
+	}
+
+	@When("^I complete login set new profile image$")
+	public void i_complete_login_set_new_profile_image() throws Throwable 
+	{
+	   driver.findElement(By.xpath("//*[@class='display_name']")).click();
+	   driver.findElement(By.xpath("//*[@class='open-edit-profile edit_profile']")).click();
+	   driver.findElement(By.id("user_avatar_browse_button")).click();
+	   //upload image use javaRobot
+	   Robot r=new Robot();
+	   StringSelection s=new StringSelection("F:\\cartoon-man-working-computer.jpg");
+	   Toolkit.getDefaultToolkit().getSystemClipboard().setContents(s, null);
+	   r.keyPress(KeyEvent.VK_CONTROL);
+	   r.keyPress(KeyEvent.VK_V);
+	   r.keyRelease(KeyEvent.VK_V);
+	   r.keyRelease(KeyEvent.VK_CONTROL);
+	   Thread.sleep(5000);
+	   r.keyPress(KeyEvent.VK_ENTER);
+	   r.keyRelease(KeyEvent.VK_ENTER);
+	   Thread.sleep(5000);
+	   
+	}
+
+	@Then("^Enter your details in profile and save$")
+	public void enter_your_details_in_profile_and_save() throws Throwable 
+	{
+        driver.findElement(By.name("user_location")).sendKeys("sekarreddy");
+        driver.findElement(By.name("user_facebook")).sendKeys("sekarReddy");
+        driver.findElement(By.name("user_twitter")).sendKeys("sekar@sekarcReddy");
+        driver.findElement(By.name("user_email")).sendKeys("sekarcreddy@gmail.com");
+        driver.findElement(By.name("description")).sendKeys("hi i am graduate engineer in ece domain");
+        driver.findElement(By.name("submit")).click();
+        Thread.sleep(5000);
+		
+	}
+
+	@Then("^Log out$")
+	public void log_out() throws Throwable 
+	{
+		driver.findElement(By.xpath("//*[@class='display_name']")).click();
+		driver.findElement(By.xpath("//*[@id='header_sidebar']/preceding::*[2]")).click();
+	    Thread.sleep(5000);
+	    
+	}
+	
+	
+
+}
